@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 const IMBD_API = "http://www.omdbapi.com/?apikey=1f17b25e&s=";
 
 class App extends Component {
-
+    //main constructor
     constructor(){
       super();
       this.state = {
@@ -15,7 +15,7 @@ class App extends Component {
     }
 
 
-    //api search for movie
+    //return movie search
     getMovie = () =>{
       //variables
       const req = new XMLHttpRequest();
@@ -34,6 +34,8 @@ class App extends Component {
       req.send();
     }
 
+
+    //return state with the movie
     movieSearch = (e) =>{
       this.setState({
         movieName: e.target.value
