@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 
 
 export default class DisplayMovie extends Component {
-  constructor() {
-    super();
-    this.state = {
-      movie: ''
-    }
-  }
-
+  
   render(){
     return(
       <div>

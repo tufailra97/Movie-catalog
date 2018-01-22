@@ -2,55 +2,64 @@ import React, { Component } from 'react';
 import SearchMovie from './components/SearchMovie'
 
 //IMBD API KEY
-const IMBD_API = "http://www.omdbapi.com/?apikey=1f17b25e&t=";
+const IMBD_API = "http://www.omdbapi.com/?apikey=1f17b25e&s=";
 
 class App extends Component {
 
     constructor(){
       super();
       this.state = {
-        movieName: 'Batman',
-        img: ''
+        movies: [],
+        movieName: 'batman'
       }
     }
 
+    componenWillMount(){
+      this.state = {
+        movies: [],
+        movieName: 'batman'
+      }
+    }
+
+
+    //api search for movie
     getMovie = () =>{
+      //variables
       const req = new XMLHttpRequest();
       let data;
 
+      //request for searching the movie
       req.open('GET', IMBD_API + encodeURI(this.state.movieName));
 
+      //parsing data
       req.onload = () =>{
         data = JSON.parse(req.responseText);
-        console.log(data.Title);
-        console.log(data);
-
         this.setState({
-          img: data.Poster
+          movies: data
         });
       }
       req.send();
-    }
 
-    resultMovie = (e) =>{
-      console.log(e);
-    }
-
-    movieSearch = (e) =>{
-      this.setState({
-        movieName: e.target.value
-      });
-
-      this.getMovie();
     }
 
     render(){
       return(
-        <div>
-          <SearchMovie result={this.resultMovie}/>
-          <input type="text" onChange={this.movieSearch}/>
-          <h1 onClick={this.getMovie}>Search</h1>
-          <img src={this.state.img} alt=""/>
+        <div className="container-fluid col-sm-6 jump">
+          <div className="jumbotron">
+            <SearchMovie />
+            <input type="text" onChange={this.movieSearch}/>
+            <button onClick={this.getMovie}>Search</button>
+          </div>
+
+          <div className="container">
+            <div className="row">
+              {
+                this.state.movies.Search.map(function(movie, index){
+                  return (<li key={index}>{movie.Title}</li>)
+                })}
+              }
+            </div>
+          </div>
         </div>
       );
     }
