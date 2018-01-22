@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SearchMovie from './components/SearchMovie'
 
 //IMBD API KEY
 const IMBD_API = "http://www.omdbapi.com/?apikey=1f17b25e&s=";
@@ -12,13 +11,7 @@ class App extends Component {
         movies: [],
         movieName: 'batman'
       }
-    }
 
-    componenWillMount(){
-      this.state = {
-        movies: [],
-        movieName: 'batman'
-      }
     }
 
 
@@ -39,25 +32,39 @@ class App extends Component {
         });
       }
       req.send();
-
     }
 
+    movieSearch = (e) =>{
+      this.setState({
+        movieName: e.target.value
+      });
+    }
+
+
+    //rendering component
     render(){
       return(
-        <div className="container-fluid col-sm-6 jump">
+        <div className="container-fluid">
           <div className="jumbotron">
-            <SearchMovie />
             <input type="text" onChange={this.movieSearch}/>
-            <button onClick={this.getMovie}>Search</button>
+            <button className="btn btn-secondary" onClick={this.getMovie}>Search</button>
           </div>
 
           <div className="container">
-            <div className="row">
-              {
-                this.state.movies.Search.map(function(movie, index){
-                  return (<li key={index}>{movie.Title}</li>)
-                })}
-              }
+            <div>
+              <ul className="row">
+                {
+                  this.state.movies.length === undefined ? this.state.movies.Search.map((movie, index) =>{
+                    return(
+                      <li key={index} className="col list-group-item list-group-item-action">
+                        <h3>{movie.Title}</h3>
+                        <img src={movie.Poster} alt={movie.Title}/>
+                        <p>{movie.Description}</p>
+                      </li>
+                    )
+                  }) : <h1>Search a movie to se the result</h1>
+                }
+              </ul>
             </div>
           </div>
         </div>
