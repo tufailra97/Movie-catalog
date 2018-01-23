@@ -48,7 +48,8 @@ class App extends Component {
       const movies = this.state.movies;
       let movieResult;
 
-      if( movies != undefined ){
+      if( movies.Search !== undefined ){
+        console.log(movies);
         movieResult = <DisplayMovie movieList = {this.state.movies}/>;
       }else{
         movieResult = "Search movie to see result";
@@ -63,7 +64,7 @@ class App extends Component {
           <div className="container">
             <div>
               <ul className="row">
-                <DisplayMovie movieList = {this.state.movies}/>
+                {movieResult}
               </ul>
             </div>
           </div>

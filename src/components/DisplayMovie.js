@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 
 export default class DisplayMovie extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
       movies: this.props.movies
@@ -15,7 +15,7 @@ export default class DisplayMovie extends Component {
   render(){
     return(
       <div>
-        <h1>movie:{this.state.movies.Title}</h1>
+        <h1>movie:{console.log(this.state.movies)}</h1>
       </div>
     );
   }
