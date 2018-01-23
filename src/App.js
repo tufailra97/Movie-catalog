@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import DisplayMovie from './components/DisplayMovie';
 //IMBD API KEY
 const IMBD_API = "http://www.omdbapi.com/?apikey=1f17b25e&s=";
 
@@ -45,6 +45,14 @@ class App extends Component {
 
     //rendering component
     render(){
+      const movies = this.state.movies;
+      let movieResult;
+
+      if( movies != undefined ){
+        movieResult = <DisplayMovie movieList = {this.state.movies}/>;
+      }else{
+        movieResult = "Search movie to see result";
+      }
       return(
         <div className="container-fluid">
           <div className="jumbotron">
@@ -55,17 +63,7 @@ class App extends Component {
           <div className="container">
             <div>
               <ul className="row">
-                {
-                  this.state.movies.length === undefined ? this.state.movies.Search.map((movie, index) =>{
-                    return(
-                      <li key={index} className="col list-group-item list-group-item-action">
-                        <h3>{movie.Title}</h3>
-                        <img src={movie.Poster} alt={movie.Title}/>
-                        <p>{movie.Description}</p>
-                      </li>
-                    )
-                  }) : <h1>Search a movie to se the result</h1>
-                }
+                <DisplayMovie movieList = {this.state.movies}/>
               </ul>
             </div>
           </div>
