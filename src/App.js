@@ -40,6 +40,7 @@ class App extends Component {
       this.setState({
         movieName: e.target.value
       });
+      this.getMovie();
     }
 
 
@@ -48,11 +49,10 @@ class App extends Component {
       const movies = this.state.movies;
       let movieResult;
 
-      if( movies.Search !== undefined ){
-        console.log(movies);
-        movieResult = <DisplayMovie movieList = {this.state.movies}/>;
+      if( movies.Search === undefined ){
+        movieResult = <h1>Result : 0</h1>;
       }else{
-        movieResult = "Search movie to see result";
+        movieResult = <DisplayMovie movieList = {movies}/>;
       }
       return(
         <div className="container-fluid">
@@ -63,9 +63,7 @@ class App extends Component {
 
           <div className="container">
             <div>
-              <ul className="row">
-                {movieResult}
-              </ul>
+              {movieResult}
             </div>
           </div>
         </div>
