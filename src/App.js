@@ -9,14 +9,21 @@ class App extends Component {
       super();
       this.state = {
         movies: [],
-        movieName: 'batman'
+        movieName: ''
       }
 
     }
 
+    componentWillMount(){
+      this.setState({
+        movieName: 'batman'
+      });
+    }
+
 
     //return movie search
-    getMovie = () =>{
+    getMovie = (e) =>{
+      e.preventDefault();
       //variables
       const req = new XMLHttpRequest();
       let data;
@@ -40,7 +47,6 @@ class App extends Component {
       this.setState({
         movieName: e.target.value
       });
-      this.getMovie();
     }
 
 
@@ -50,16 +56,19 @@ class App extends Component {
       let movieResult;
 
       if( movies.Search === undefined ){
-        movieResult = <h1>Result : 0</h1>;
+        movieResult = <p className="text-center">Search to see content</p>
       }else{
         movieResult = <DisplayMovie movieList = {movies}/>;
       }
       return(
         <div className="container-fluid">
-          <div className="jumbotron">
-            <input type="text" onChange={this.movieSearch}/>
-            <button className="btn btn-secondary" onClick={this.getMovie}>Search</button>
-          </div>
+          <form className="jumbotron form-row align-items-center" onSubmit={this.getMovie}>
+            <div className="col-auto">
+              <label className="sr-only" htmlFor="movie">Movie</label>
+              <input className="form-control mb-2" type="text" onChange={this.movieSearch} placeholder="Movie Name..."/>
+            </div>
+            <input type="submit" className="btn btn-primary mb-2" value="Search"/>
+          </form>
 
           <div className="container">
             <div>
