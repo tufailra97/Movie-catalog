@@ -56,12 +56,11 @@ class App extends Component {
       }
       return(
         <div className="container-fluid">
-
           <div>
             <div className="jumbotron align-items-center">
               <h1>Movie Catalog</h1>
               <div>
-                <input className="col-lg-9" type="text" onChange={this.movieSearch} placeholder="Movie Name..."/>
+                <input className="col-lg-8" type="text" onChange={this.movieSearch} placeholder="Movie Name..."/>
                 <input type="button" className="btn btn-primary mb-2" value="Search" onClick={this.getMovie}/>
               </div>
             </div>

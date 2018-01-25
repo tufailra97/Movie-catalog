@@ -10,6 +10,7 @@ export default class DisplayMovie extends Component {
     }
   }
 
+
   componentDidMount(){
     this.setState({
       movie: null
@@ -20,7 +21,6 @@ export default class DisplayMovie extends Component {
 
   render(){
     const movies = this.state.movies;
-    console.log(movies);
 
     return(
       <div>
