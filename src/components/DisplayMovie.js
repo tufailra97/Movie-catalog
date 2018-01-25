@@ -29,10 +29,12 @@ export default class DisplayMovie extends Component {
           {movies.Search.map((movie, index) => {
             return(
               <li className="col list-group-item list-group-item-action" key={index}>
-                <figure className="img-fluid mx-auto">
+                <figure className="img-fluid mx-auto text-center">
                   <img src={movie.Poster} alt={movie.Title}/>
                 </figure>
-                <p className="text-cente">{movie.Title}</p>
+                <p>Name: {movie.Title}</p>
+                <p>Year: {movie.Year}</p>
+                <p>Type: {movie.Type}</p>
               </li>
             );
           })

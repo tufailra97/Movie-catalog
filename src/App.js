@@ -15,8 +15,7 @@ class App extends Component {
     }
 
     //return movie search
-    getMovie = (e) =>{
-      e.preventDefault();
+    getMovie = () =>{
       //variables
       const req = new XMLHttpRequest();
       let data;
@@ -40,6 +39,8 @@ class App extends Component {
       this.setState({
         movieName: e.target.value
       });
+
+      this.getMovie();
     }
 
 
@@ -55,14 +56,16 @@ class App extends Component {
       }
       return(
         <div className="container-fluid">
-          <form className="jumbotron form-row align-items-center" onSubmit={this.getMovie}>
-            <div className="col-auto">
-              <label className="sr-only" htmlFor="movie">Movie</label>
-              <input className="form-control mb-2" type="text" onChange={this.movieSearch} placeholder="Movie Name..."/>
-            </div>
-            <input type="submit" className="btn btn-primary mb-2" value="Search"/>
-          </form>
 
+          <div>
+            <div className="jumbotron align-items-center">
+              <h1>Movie Catalog</h1>
+              <div>
+                <input className="col-lg-9" type="text" onChange={this.movieSearch} placeholder="Movie Name..."/>
+                <input type="button" className="btn btn-primary mb-2" value="Search" onClick={this.getMovie}/>
+              </div>
+            </div>
+          </div>
           <div className="container">
             <div>
               {movieResult}
