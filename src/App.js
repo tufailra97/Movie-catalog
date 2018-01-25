@@ -14,13 +14,6 @@ class App extends Component {
 
     }
 
-    componentWillMount(){
-      this.setState({
-        movieName: 'batman'
-      });
-    }
-
-
     //return movie search
     getMovie = (e) =>{
       e.preventDefault();
